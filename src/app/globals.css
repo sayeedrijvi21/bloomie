@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* Bloomie brand tokens — taken from the logo (sage + cream) and the cherry bib print */
+:root {
+  --milk: #fbf8f1;
+  --linen: #f1ebdf;
+  --sage: #8e9c7e;
+  --sage-soft: #dfe5d6;
+  --moss: #55654a;
+  --bark: #3b3c30;
+  --bark-soft: #6b6c5c;
+  --cherry: #b3404a;
+  /* order status colours (admin) */
+  --st-new: #b3404a;       --st-new-bg: #f8e4e3;
+  --st-conf: #8a6a1f;      --st-conf-bg: #f6ecd2;
+  --st-ship: #2f6178;      --st-ship-bg: #dfecf1;
+  --st-done: #4b6b3c;      --st-done-bg: #e3ecd9;
+  --st-cancel: #77776c;    --st-cancel-bg: #ecebe5;
+
+  --display: "Young Serif", "Tiro Bangla", Georgia, serif;
+  --body: "Nunito Sans Variable", "Hind Siliguri", system-ui, sans-serif;
+}
+
+html[lang="bn"] {
+  --display: "Tiro Bangla", "Young Serif", Georgia, serif;
+  --body: "Hind Siliguri", "Nunito Sans Variable", system-ui, sans-serif;
+}
+
+@theme inline {
+  --color-milk: var(--milk);
+  --color-linen: var(--linen);
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-moss: var(--moss);
+  --color-bark: var(--bark);
+  --color-bark-soft: var(--bark-soft);
+  --color-cherry: var(--cherry);
+  --color-st-new: var(--st-new);
+  --color-st-new-bg: var(--st-new-bg);
+  --color-st-conf: var(--st-conf);
+  --color-st-conf-bg: var(--st-conf-bg);
+  --color-st-ship: var(--st-ship);
+  --color-st-ship-bg: var(--st-ship-bg);
+  --color-st-done: var(--st-done);
+  --color-st-done-bg: var(--st-done-bg);
+  --color-st-cancel: var(--st-cancel);
+  --color-st-cancel-bg: var(--st-cancel-bg);
+  --font-display: var(--display);
+  --font-body: var(--body);
+}
+
+body {
+  background: var(--milk);
+  color: var(--bark);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[lang="bn"] body {
+  line-height: 1.7;
+}
+
+:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* The one signature device: the petal edge of the bib, used as a band edge */
+.scallop-edge {
+  height: 18px;
+  background: radial-gradient(circle at 50% 0, var(--linen) 17px, transparent 18px) repeat-x;
+  background-size: 36px 18px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Admin invoice printing: hide the dashboard around the invoice */
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+  .print-plain { box-shadow: none !important; border: 0 !important; margin: 0 !important; max-width: none !important; }
+}
